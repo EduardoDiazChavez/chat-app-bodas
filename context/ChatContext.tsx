@@ -11,8 +11,8 @@ interface stateConversation {
   data: Chat | null;
 }
 interface ResultFetchChats {
-  received: number | null;
-  total1: number | null;
+  received?: number | null;
+  total: number | null;
   results: Chat[];
 }
 interface ResultFetchContacts {
@@ -48,7 +48,7 @@ type Context = {
 };
 
 const initialContext: Context = {
-  chats: { received: 0, total1: null, results: [] },
+  chats: { received: 0, total: null, results: [] },
   setChats: () => null,
   loadingChats: false,
   errorChats: false,

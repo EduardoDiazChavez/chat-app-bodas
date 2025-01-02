@@ -10,7 +10,7 @@ export const HandleDataContacts = (setContacts: any) => {
           if (oldContact._id === data._id) {
             return {
               ...oldContact,
-              eventos: [...oldContact.eventos, data.eventos[0]]
+              evento: [...oldContact.events, data.events[0]]
             }
           }
           return oldContact
@@ -74,7 +74,7 @@ export const HandleEvents = (props: HandleEvents) => {
   props.setPage(1)
   const contactsReduce = props?.contacts?.results?.reduce((acc: any, iterador: any) => {
     console.log("iterador", iterador)
-    const iteradorFilter = iterador?.eventos?.filter((elem: any) => {
+    const iteradorFilter = iterador?.events?.filter((elem: any) => {
       console.log(elem._id, props?.item?._id, elem._id == props?.item?._id)
       return elem._id == props?.item?._id
     })
@@ -146,6 +146,7 @@ type HandleSendMessage = {
   // contacts: any
 }
 export const HandleSendMessage = (props: HandleSendMessage) => {
+  console.log("sendMessage")
   if (props?.chat?._id) {
     props.setChats((old: any) => {
       const resultsMap = old.results.map((elem: any) => {
@@ -155,10 +156,9 @@ export const HandleSendMessage = (props: HandleSendMessage) => {
             type: "text",
             emitUserUid: props.userUid,
             message: props.messageSend,
-            //_id: "",
             createdAt: Date.now(),
           }]
-          //props.setChat(elem)
+          elem.updatedAt = Date.now()
         }
         return (elem)
       })
@@ -169,21 +169,15 @@ export const HandleSendMessage = (props: HandleSendMessage) => {
           type: "text",
           message: props.messageSend,
         },
-      }
+      };
       props.socket?.emit(`chatEvents:message`, send);
-      return { total: old.total, results: resultsMap }
+      const resultsSort = resultsMap?.sort((a: any, b: any) => b.updatedAt - a.updatedAt)
+      return { total: old.total, results: resultsSort }
     })
     return
   }
   console.log(9, props.chat.addedes)
-  // const emitor = ""
-  // const receiver = props.contacts.results.filter((elem: any) => elem.uid == props.chat.addedes[0].userUid)
-  // console.log("receiver", receiver)
   const send = {
-    // emitor: {
-    //   title: "",
-    //   photoURL: ""
-    // },
     receiver: {
       ids: props.chat.addedes.map((elem: any) => {
         return elem.userUid
@@ -198,24 +192,8 @@ export const HandleSendMessage = (props: HandleSendMessage) => {
       type: "text",
     },
   }
-  console.log(10, send)
   props.socket.emit("chatEvents:create", send);
   //con la resouesta del emit se setea chat y chats
   // lo correcto es setear desde aca y crear componente y funcion para poner la bolita de procesando 
   //y con la respuesta marcar el ganchito de enviado
-
-  console.log(1, props?.chat, 2, props?.messageSend, 3, props.userUid)
-
 }
-// type message {
-//   _id: ID
-//   type: String
-//   emitUserUid: ID
-//   message: String
-//   fileUrl: String
-//   createdAt: Float
-//   received: Float
-//   read: Boolean
-//   deletedEmit: Boolean
-//   deletedReceiv: Boolean
-// }

@@ -12,10 +12,10 @@ interface propsLedIndicator {
 
 export const LogoBoda: FC<propsLedIndicator> = ({ width, height }) =>
   <>
-    <Image
+    <img
       alt="Logo-BodasDeHoy"
-      src={Logo}
-      className="object-contain"
+      src={Logo.src}
+      className="object-scale-down"
       width={width}
       height={height}
     />

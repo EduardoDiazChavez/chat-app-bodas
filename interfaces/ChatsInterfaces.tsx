@@ -11,11 +11,11 @@ export interface Contact {
   _id: string,
   uid: string,
   type: string,
-  onLine: onLine,
+  onLine: OnLine,
   nickName: string,
   photoURL: string
   correo: string,
-  eventos: Event[]
+  events: Event[]
 }
 export interface Event {
   _id: string,
@@ -23,35 +23,42 @@ export interface Event {
 }
 export interface Chat {
   _id: string
-  addedes: addedes[]
-  messages: messageChat[]
+  addedes: Addedes[]
+  messages: MessageChat[]
   createdAt: number
   updatedAt: number
-  onLine: string
+  onLine: OnLine
   title: string
   type: string
   photoURL: string
 }
-interface onLine {
-  status: Boolean
+interface OnLine {
+  status: boolean
   dateConection: number
 }
-interface addedes {
+interface Addedes {
   userUid: string
   type: string
   online: boolean
 }
 
-export interface messageChat {
-  type: string
-  emitUserUid: string
-  message: string
-  fileUrl: string
-  createdAt: number
-  received: boolean
-  read: boolean
-  deletedEmit: boolean
-  deletedReceiv: boolean
+export interface MessageChat {
+  type?: string
+  emitUserUid?: string
+  message?: string
+  fileUrl?: string
+  language?: string
+  audio?: string
+  video?: string
+  image?: string
+  title?: string
+  description?: string
+  url?: string
+  createdAt?: number
+  received?: boolean
+  read?: boolean
+  deletedEmit?: boolean
+  deletedReceiv?: boolean
 }
 
 interface online {

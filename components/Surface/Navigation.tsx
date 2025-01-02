@@ -33,7 +33,7 @@ export const Navigation: FC = () => {
           <LogoBoda width={160} height={100} />
           <div className="flex items-center justify-between md:gap-4 h-full">
             {/* <Button title={"Invita amigos"} onClick={handleInviteFriend} className="hidden md:block bg-primary text-white px-3 py-2 rounded-lg text-sm transition hover:opacity-90" /> */}
-            <Notification valir={valir} value={value} onClick={handleClickNotification} />
+            <Notification valir={true} value={5} onClick={handleClickNotification} />
             <Profile />
           </div>
         </nav>

@@ -113,7 +113,7 @@ const A: FC<propsChats> = ({ active, setActive, setChat }) => {
               <SwiperSlide className="w-full  calHeight3 pb-3 overscroll-contain">
                 {
                   resultsContact?.length > 0 && resultsContact?.map((item: any, idx: any) => (
-                    <Section key={idx} onClick={() => { HandleContacts({ setPage, setActive, setContactUid, setChatId, item }) }} image={item.photoURL} name={item.nickName} info={`${item.eventos.map(((it: any) => it.nombre)).toString().replace(/,/g, ", ")}`} _id={item._id} onLine={item.onLine.status} />
+                    <Section key={idx} onClick={() => { HandleContacts({ setPage, setActive, setContactUid, setChatId, item }) }} image={item.photoURL} name={item.nickName} info={`${item.events.map(((it: any) => it.nombre)).toString().replace(/,/g, ", ")}`} _id={item._id} onLine={item.onLine.status} />
                   ))
                 }
               </SwiperSlide>
